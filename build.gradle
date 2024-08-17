@@ -3,6 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '3.3.2'
 	id 'io.spring.dependency-management' version '1.1.6'
 	id 'org.graalvm.buildtools.native' version '0.10.2'
+	id "org.sonarqube" version "5.1.0.4882"
 }
 
 group = 'com'
@@ -23,6 +24,15 @@ configurations {
 repositories {
 	mavenCentral()
 }
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "oauth2"  
+        property "sonar.host.url", "http://localhost:9000"
+        property "sonar.login", "squ_11b3a9abc74b63623c8bf963209e594cc9185d4a"
+    }
+}
+
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
@@ -50,6 +60,20 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test' 
     testImplementation 'org.springframework.security:spring-security-test' 
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher' 
+    
+    // Dépendance pour Apache HttpClient
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+    implementation 'org.apache.httpcomponents:httpmime:4.5.13'
+
+    // Dépendance pour JSON
+    implementation 'org.json:json:20210307'
+
+    // Dépendances Spring Boot
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+
+    // Dépendance pour Apache PDFBox
+    implementation 'org.apache.pdfbox:pdfbox:2.0.24'
     
     
 }
